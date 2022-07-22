@@ -1,0 +1,213 @@
+<?php
+    // header
+    require_once'../model/user.php';
+    require_once'../model/transaction.php';
+    require_once'../model/ticket.php';
+    
+    if(is_numeric($_SESSION['userID']))
+    {
+        // show profile and logout buttoms
+    }else{
+        // show sign up and login page
+        header("location: Home.php?");
+        exit();
+    }
+  ?>
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>confirm pay 1</title>
+    <link rel="stylesheet" href="css/nicepage.css" media="screen">
+    <link rel="stylesheet" href="css/confirm-pay-1.css" media="screen">
+    <script class="u-script" type="text/javascript" src="js/jquery-1.9.1.min.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="js/nicepage.js" defer=""></script>
+    <meta name="generator" content="Nicepage 4.12.5, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    
+    
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": ""
+}</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="confirm pay 1">
+    <meta property="og:type" content="website">
+  </head>
+  <body class="u-body u-xl-mode"><header class="u-clearfix u-header u-header" id="sec-5a0a"><div class="u-clearfix u-sheet u-sheet-1">
+        <img class="u-expanded-width-sm u-expanded-width-xs u-image u-image-default u-image-1" src="images/cjnkxnckc.png" alt="" data-image-width="1920" data-image-height="505" data-href="Home.php" data-page-id="2140117">
+      </div></header>
+      <?php
+        if(isset($_POST['buy'])){
+            $EGP5 = $_POST['EGP5'];
+            $EGP7 = $_POST['EGP7'];
+            $EGP10 = $_POST['EGP10'];
+            $qrCode = Transaction::generateQRCode();
+            $date = date("d-m-20y");
+            $time = date("h:i:s A");
+            
+            /* include QRBarCode class */
+            include "../model/QRBarCode.php"; 
+            $qr = new QRBarCode(); 
+            /* create text QR code  */
+            $qr->text($qrCode); 
+            /* qrCode(size, path) */
+            $qr->qrCode(400, '../QRimages/'.$qrCode.'png');
+            
+            $transaction = new Transaction($qrCode, $date, $time, $_SESSION['userID']);
+            $transactionID = $transaction->add();
+            if($transactionID){
+                for($i = 0; $i < $EGP5; $i++){
+                    $ticketCode = Ticket::generateTicketCode();
+
+                    /* create text QR code  */
+                    $qr->text($ticketCode); 
+                    /* qrCode(size, path) */
+                    $qr->qrCode(400, '../QRimages/'.$ticketCode.'png');
+                    
+                    $ticket = new Ticket($ticketCode, 5, 0, 0, $transactionID);
+                    if(!is_numeric($ticket->add())){
+                        // transaction failed
+                        Transaction::delete($transactionID);
+                        break;
+                    }
+                }
+                if($transactionID){
+                    for($i = 0; $i < $EGP7; $i++){
+                        $ticketCode = Ticket::generateTicketCode();
+                        
+                        /* create text QR code  */
+                        $qr->text($ticketCode); 
+                        /* qrCode(size, path) */
+                        $qr->qrCode(400, '../QRimages/'.$ticketCode.'png');
+                    
+                        $ticket = new Ticket($ticketCode, 7, 0, 0, $transactionID);
+                        if(!is_numeric($ticket->add())){
+                            // transaction failed
+                            Transaction::delete($transactionID);
+                            break;
+                        }
+                    }
+                    if($transactionID){
+                        for($i = 0; $i < $EGP10; $i++){
+                            $ticketCode = Ticket::generateTicketCode();
+                            
+                            /* create text QR code  */
+                            $qr->text($ticketCode); 
+                            /* qrCode(size, path) */
+                            $qr->qrCode(400, '../QRimages/'.$ticketCode.'png');
+                            
+                            $ticket = new Ticket($ticketCode, 10, 0, 0, $transactionID);
+                            if(!is_numeric($ticket->add())){
+                                // transaction failed
+                                Transaction::delete($transactionID);
+                                break;
+                            }
+                        }
+                    }else{
+                        // transaction failed
+                    }
+                }else{
+                    // transaction failed
+                }
+                // show qrCode
+            }else{
+                // transaction failed
+            }
+        }
+      ?>
+    <section class="u-clearfix u-palette-4-base u-section-1" id="carousel_757c">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-carousel u-expanded-width-md u-expanded-width-sm u-expanded-width-xs u-gallery u-gallery-slider u-hidden-lg u-hidden-xl u-layout-carousel u-lightbox u-no-transition u-show-text-none u-gallery-1" data-interval="5000" data-u-ride="carousel" id="carousel-6087">
+          <ol class="u-absolute-hcenter u-carousel-indicators u-carousel-indicators-1">
+            <li data-u-target="#carousel-6087" data-u-slide-to="0" class="u-active u-grey-70 u-shape-circle" style="width: 10px; height: 10px;"></li>
+            <li data-u-target="#carousel-6087" data-u-slide-to="1" class="u-grey-70 u-shape-circle" style="width: 10px; height: 10px;"></li>
+            <li data-u-target="#carousel-6087" data-u-slide-to="2" class="u-grey-70 u-shape-circle" style="width: 10px; height: 10px;"></li>
+          </ol>
+          <div class="u-carousel-inner u-gallery-inner" role="listbox">
+            <div class="u-active u-carousel-item u-gallery-item u-carousel-item-1">
+              <div class="u-back-slide" data-image-width="1080" data-image-height="1080">
+                <img class="u-back-image u-expanded" src="images/10eng-01.png">
+              </div>
+              <div class="u-align-center-xs u-over-slide u-shading u-valign-bottom-xs u-over-slide-1">
+                <h3 class="u-gallery-heading">Sample Title</h3>
+                <p class="u-gallery-text">Sample Text</p>
+              </div>
+            </div>
+            <div class="u-carousel-item u-gallery-item u-carousel-item-2">
+              <div class="u-back-slide" data-image-width="1080" data-image-height="1080">
+                <img class="u-back-image u-expanded" src="images/7eng-02-01.png">
+              </div>
+              <div class="u-align-center-xs u-over-slide u-shading u-valign-bottom-xs u-over-slide-2">
+                <h3 class="u-gallery-heading">Sample Title</h3>
+                <p class="u-gallery-text">Sample Text</p>
+              </div>
+            </div>
+            <div class="u-carousel-item u-gallery-item u-carousel-item-3" data-image-width="1080" data-image-height="1080">
+              <div class="u-back-slide">
+                <img class="u-back-image u-expanded" src="images/5eng-01.png">
+              </div>
+              <div class="u-align-center-xs u-over-slide u-shading u-valign-bottom-xs u-over-slide-3">
+                <h3 class="u-gallery-heading"></h3>
+                <p class="u-gallery-text"></p>
+              </div>
+              <style data-mode="XL" data-visited="true"></style>
+              <style data-mode="LG"></style>
+              <style data-mode="MD"></style>
+              <style data-mode="SM"></style>
+              <style data-mode="XS"></style>
+            </div>
+          </div>
+          <a class="u-absolute-vcenter u-carousel-control u-carousel-control-prev u-grey-70 u-icon-circle u-opacity u-opacity-70 u-spacing-10 u-text-white u-carousel-control-1" href="#carousel-6087" role="button" data-u-slide="prev">
+            <span aria-hidden="true">
+              <svg viewBox="0 0 451.847 451.847"><path d="M97.141,225.92c0-8.095,3.091-16.192,9.259-22.366L300.689,9.27c12.359-12.359,32.397-12.359,44.751,0
+c12.354,12.354,12.354,32.388,0,44.748L173.525,225.92l171.903,171.909c12.354,12.354,12.354,32.391,0,44.744
+c-12.354,12.365-32.386,12.365-44.745,0l-194.29-194.281C100.226,242.115,97.141,234.018,97.141,225.92z"></path></svg>
+            </span>
+            <span class="sr-only">
+              <svg viewBox="0 0 451.847 451.847"><path d="M97.141,225.92c0-8.095,3.091-16.192,9.259-22.366L300.689,9.27c12.359-12.359,32.397-12.359,44.751,0
+c12.354,12.354,12.354,32.388,0,44.748L173.525,225.92l171.903,171.909c12.354,12.354,12.354,32.391,0,44.744
+c-12.354,12.365-32.386,12.365-44.745,0l-194.29-194.281C100.226,242.115,97.141,234.018,97.141,225.92z"></path></svg>
+            </span>
+          </a>
+          <a class="u-absolute-vcenter u-carousel-control u-carousel-control-next u-grey-70 u-icon-circle u-opacity u-opacity-70 u-spacing-10 u-text-white u-carousel-control-2" href="#carousel-6087" role="button" data-u-slide="next">
+            <span aria-hidden="true">
+              <svg viewBox="0 0 451.846 451.847"><path d="M345.441,248.292L151.154,442.573c-12.359,12.365-32.397,12.365-44.75,0c-12.354-12.354-12.354-32.391,0-44.744
+L278.318,225.92L106.409,54.017c-12.354-12.359-12.354-32.394,0-44.748c12.354-12.359,32.391-12.359,44.75,0l194.287,194.284
+c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,248.292z"></path></svg>
+            </span>
+            <span class="sr-only">
+              <svg viewBox="0 0 451.846 451.847"><path d="M345.441,248.292L151.154,442.573c-12.359,12.365-32.397,12.365-44.75,0c-12.354-12.354-12.354-32.391,0-44.744
+L278.318,225.92L106.409,54.017c-12.354-12.359-12.354-32.394,0-44.748c12.354-12.359,32.391-12.359,44.75,0l194.287,194.284
+c6.177,6.18,9.262,14.271,9.262,22.366C354.708,234.018,351.617,242.115,345.441,248.292z"></path></svg>
+            </span>
+          </a>
+        </div>
+          <?php
+              echo '<a href="transactionQRCode.php?transactiinID='.$transactionID.'" data-page-id="2141191" class="u-border-2 u-border-palette-2-base u-btn u-btn-round u-button-style u-hover-palette-2-base u-none u-radius-6 u-text-hover-white u-btn-1">pay now</a>';
+          ?>
+          
+      </div>
+    </section>
+    
+    
+    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-285c"><div class="u-clearfix u-sheet u-sheet-1">
+        <p class="u-small-text u-text u-text-variant u-text-1">Sample text. Click to select the Text Element.</p>
+      </div></footer>
+    <section class="u-backlink u-clearfix u-grey-80">
+      <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
+        <span>Web Templates</span>
+      </a>
+      <p class="u-text">
+        <span>created with</span>
+      </p>
+      <a class="u-link" href="https://nicepage.com/html-website-builder" target="_blank">
+        <span>HTML Layout generator</span>
+      </a>. 
+    </section>
+  </body>
+</html>

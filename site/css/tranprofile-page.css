@@ -1,0 +1,96 @@
+ .u-section-1 {
+  background-image: none;
+}
+
+.u-section-1 .u-sheet-1 {
+  min-height: 524px;
+}
+
+.u-section-1 .u-text-1 {
+  font-size: 6rem;
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: 4px;
+  margin: 0 69px;
+}
+
+.u-section-1 .u-table-1 {
+  width: 677px;
+  margin: 78px auto 60px;
+}
+
+.u-block-4b7c-89 {
+  border-style: double;
+}
+
+.u-block-4b7c-92 {
+  height: 47px;
+}
+
+.u-section-1 .u-table-body-1 {
+  font-weight: 700;
+  background-image: none;
+}
+
+.u-section-1 .u-table-cell-1 {
+  border-style: double;
+}
+
+.u-section-1 .u-table-cell-2 {
+  border-style: double;
+}
+
+.u-section-1 .u-table-cell-3 {
+  border-style: double;
+}
+
+.u-section-1 .u-table-cell-4 {
+  border-style: double;
+}
+
+.u-section-1 .u-table-cell-5 {
+  border-style: double;
+}
+
+.u-section-1 .u-table-cell-6 {
+  border-style: double;
+}
+
+.u-section-1 .u-table-cell-7 {
+  border-style: double;
+}
+
+.u-section-1 .u-table-cell-8 {
+  border-style: double;
+}
+
+.u-section-1 .u-table-cell-9 {
+  border-style: double;
+}
+
+.u-section-1 .u-table-cell-10 {
+  border-style: double;
+}
+
+.u-block-4b7c-108 {
+  height: 47px;
+}
+
+@media (max-width: 767px) {
+  .u-section-1 .u-table-1 {
+    width: 540px;
+  }
+}
+
+@media (max-width: 575px) {
+  .u-section-1 .u-text-1 {
+    font-size: 1.875rem;
+    width: auto;
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  .u-section-1 .u-table-1 {
+    width: 340px;
+  }
+}

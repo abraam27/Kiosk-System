@@ -1,0 +1,71 @@
+<?php
+    // header
+    require_once'../model/user.php';
+    require_once'../model/transaction.php';
+    require_once'../model/ticket.php';
+    if(is_numeric($_SESSION['userID']))
+    {
+        // show profile and logout buttoms
+    }else{
+        // show sign up and login page
+        header("location: Home.php?");
+        exit();
+    }
+?>
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="​your transaction&nbsp;qr code">
+    <meta name="description" content="">
+    <title>trans page</title>
+    <link rel="stylesheet" href="css/nicepage.css" media="screen">
+<link rel="stylesheet" href="css/trans-page.css" media="screen">
+    <script class="u-script" type="text/javascript" src="js/jquery-1.9.1.min.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="js/nicepage.js" defer=""></script>
+    <meta name="generator" content="Nicepage 4.12.5, nicepage.com">
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    
+    
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": ""
+}</script>
+    <meta name="theme-color" content="#478ac9">
+    <meta property="og:title" content="trans page">
+    <meta property="og:type" content="website">
+  </head>
+  <body class="u-body u-xl-mode"><header class="u-clearfix u-header u-header" id="sec-5a0a"><div class="u-clearfix u-sheet u-sheet-1">
+        <img class="u-expanded-width-sm u-expanded-width-xs u-image u-image-default u-image-1" src="images/cjnkxnckc.png" alt="" data-image-width="1920" data-image-height="505" data-href="Home.php" data-page-id="2140117">
+      </div></header>
+    <section class="u-clearfix u-palette-4-base u-section-1" id="carousel_757c">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <h1 class="u-align-center u-text u-text-1"> your transaction<br>&nbsp;qr code
+        </h1>
+          <?php
+            $transaction = Transaction::readById($_GET["transactiinID"]);
+            echo '<img class="u-align-center u-expanded-width-xs u-image u-image-default u-image-1" src="../QRimages/'.$transaction['qrCode'].'png.png" alt="" data-image-width="820" data-image-height="860">';
+            header('Refresh: 60; Logout.php');
+          ?>
+      </div>
+    </section>
+    
+    
+    <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-285c"><div class="u-clearfix u-sheet u-sheet-1">
+        <p class="u-small-text u-text u-text-variant u-text-1">Sample text. Click to select the Text Element.</p>
+      </div></footer>
+    <section class="u-backlink u-clearfix u-grey-80">
+      <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
+        <span>Web Templates</span>
+      </a>
+      <p class="u-text">
+        <span>created with</span>
+      </p>
+      <a class="u-link" href="https://nicepage.com/html-website-builder" target="_blank">
+        <span>HTML Layout generator</span>
+      </a>. 
+    </section>
+  </body>
+</html>
