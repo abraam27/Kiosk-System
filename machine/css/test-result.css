@@ -1,0 +1,120 @@
+ .u-section-1 {
+  background-image: url("../images/bnbnn.jpg");
+  background-position: 50% 50%;
+  min-height: 678px;
+}
+
+.u-section-1 .u-layout-wrap-1 {
+  width: calc(((100% - 1140px) / 2) + 1140px);
+  margin: 0 auto 1px 0;
+}
+
+.u-section-1 .u-image-1 {
+  min-height: 677px;
+  background-image: url("../images/fff.png");
+  background-position: 100% 50%;
+}
+
+.u-section-1 .u-container-layout-1 {
+  padding: 10px 0;
+}
+
+.u-section-1 .u-text-1 {
+  font-size: 4.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 98px -284px 0 304px;
+}
+
+.u-section-1 .u-text-2 {
+  font-size: 4.5rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 20px -284px 0 304px;
+}
+
+.u-section-1 .u-layout-cell-2 {
+  min-height: 677px;
+}
+
+.u-section-1 .u-container-layout-2 {
+  padding: 30px 23px;
+}
+
+@media (max-width: 1199px) {
+   .u-section-1 {
+    min-height: 559px;
+  }
+
+  .u-section-1 .u-layout-wrap-1 {
+    width: calc(((100% - 940px) / 2) + 1140px);
+  }
+
+  .u-section-1 .u-container-layout-2 {
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 991px) {
+   .u-section-1 {
+    min-height: 428px;
+  }
+
+  .u-section-1 .u-layout-wrap-1 {
+    width: calc(((100% - 720px) / 2) + 1140px);
+  }
+
+  .u-section-1 .u-image-1 {
+    background-position: 26.97% 50%;
+    order: 1;
+  }
+
+  .u-section-1 .u-layout-cell-2 {
+    order: 0;
+  }
+
+  .u-section-1 .u-container-layout-2 {
+    padding: 60px;
+  }
+}
+
+@media (max-width: 767px) {
+   .u-section-1 {
+    min-height: 321px;
+  }
+
+  .u-section-1 .u-layout-wrap-1 {
+    width: calc(((100% - 540px) / 2) + 1140px);
+  }
+
+  .u-section-1 .u-image-1 {
+    background-position: 100% 50%;
+    min-height: 1161px;
+  }
+
+  .u-section-1 .u-container-layout-1 {
+    padding-right: 30px;
+  }
+
+  .u-section-1 .u-layout-cell-2 {
+    min-height: 1625px;
+  }
+
+  .u-section-1 .u-container-layout-2 {
+    padding-left: 50px;
+  }
+}
+
+@media (max-width: 575px) {
+   .u-section-1 {
+    min-height: 202px;
+  }
+
+  .u-section-1 .u-layout-wrap-1 {
+    width: calc(((100% - 340px) / 2) + 1140px);
+  }
+
+  .u-section-1 .u-container-layout-2 {
+    padding: 30px;
+  }
+}
